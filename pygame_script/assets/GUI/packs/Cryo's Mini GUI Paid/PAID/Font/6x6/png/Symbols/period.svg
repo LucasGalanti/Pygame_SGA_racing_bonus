@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0bdfefd02b7ad8f6547c9657af6cc05243f6694f52df753b25c120f08e2c4f9b
-size 411
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg version="1.1" width="200" height="600" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+<rect x="0" y="400" width="100" height="100" fill="#000000" />
+<rect x="100" y="400" width="100" height="100" fill="#000000" />
+<rect x="0" y="500" width="100" height="100" fill="#000000" />
+<rect x="100" y="500" width="100" height="100" fill="#000000" />
+</svg>

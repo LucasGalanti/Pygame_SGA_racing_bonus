@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5a40675eed97ec0774785f541cf20edf9d085a7856b05d15407355b0acac90d5
-size 1305
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg version="1.1" width="500" height="500" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+<rect x="0" y="0" width="100" height="100" fill="#000000" />
+<rect x="100" y="0" width="100" height="100" fill="#000000" />
+<rect x="200" y="0" width="100" height="100" fill="#000000" />
+<rect x="300" y="0" width="100" height="100" fill="#000000" />
+<rect x="400" y="0" width="100" height="100" fill="#000000" />
+<rect x="0" y="100" width="100" height="100" fill="#000000" />
+<rect x="100" y="100" width="100" height="100" fill="#000000" />
+<rect x="0" y="200" width="100" height="100" fill="#000000" />
+<rect x="100" y="200" width="100" height="100" fill="#000000" />
+<rect x="200" y="200" width="100" height="100" fill="#000000" />
+<rect x="300" y="200" width="100" height="100" fill="#000000" />
+<rect x="0" y="300" width="100" height="100" fill="#000000" />
+<rect x="100" y="300" width="100" height="100" fill="#000000" />
+<rect x="0" y="400" width="100" height="100" fill="#000000" />
+<rect x="100" y="400" width="100" height="100" fill="#000000" />
+<rect x="200" y="400" width="100" height="100" fill="#000000" />
+<rect x="300" y="400" width="100" height="100" fill="#000000" />
+<rect x="400" y="400" width="100" height="100" fill="#000000" />
+</svg>
