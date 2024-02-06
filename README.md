@@ -9,7 +9,8 @@ This project was developed as a part of an initiative by the Sales Intelligence 
 
 ## Game Description
 
-The game is structured like a card game, where the player, representing a sales representative, is required to make sales on specific days of the month (5th, 10th, 15th, 20th, 25th, and 30th). On each of these days, the player is presented with four cards, each representing a potential sale with a specific product and monetary value. The player must choose two cards per day, simulating the sales made. The final results are dependent on the choices made by the player.
+The game is structured like a card game, where the player, representing a sales representative, is required to make sales on specific days of the month (5th, 10th, 15th, 20th, 25th, and 30th). On each of these days, the player is presented with four cards, each representing a potential sale with a specific product and monetary value. The player must choose two cards per day, simulating the sales made. 
+The final results are dependent on the choices made by the player. Each card chosen can evolve the position of either car or both, which have different weights in the calculation of the final bonus.
 
 ![Title Image](./readme_images/game.png)
 
