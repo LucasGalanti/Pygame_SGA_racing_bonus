@@ -5,6 +5,13 @@ import pandas as pd
 import os
 import time
 
+
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+def asset_path(relative_path):
+    return os.path.join(script_dir,relative_path)
+
 ## Initialize the game
 pygame.init()
 
@@ -41,7 +48,7 @@ class Game():
         self.map_image_list = []
 
         #fist possibilty - map icon appearing
-        self.map_image_icon = pygame.image.load('assets/map icon.png')
+        self.map_image_icon = pygame.image.load(asset_path('assets/map icon.png'))
         self.map_image_list.append(self.map_image_icon)
         self.map_image_rect = self.map_image_icon.get_rect()
 
@@ -100,7 +107,7 @@ class Game():
         
         #Draw the new and old bonus into the respective box
 
-        self.bonus_font = pygame.font.Font('assets/joystix.otf', 35)
+        self.bonus_font = pygame.font.Font(asset_path( 'assets/joystix.otf'), 35)
 
         #old_bonus
         self.bonus_antigo_text = self.bonus_font.render("{:.0%}".format(self.old_bonus()), True, (116, 63,57))
@@ -193,10 +200,10 @@ class Game():
     def load_card_game(self):
 
         # Specify the folder path where the JSON files are located
-        folder_path = os.path.join('Game_Setups')
+        folder_path = asset_path('Game_Setups')
 
         # Get a list of all JSON files in the folder
-        json_files = [file for file in os.listdir('Game_Setups') if file.endswith('.json')]
+        json_files = [file for file in os.listdir(folder_path) if file.endswith('.json')]
 
         # Select a random JSON file from the list
         self.json_file = random.choice(json_files)
@@ -345,7 +352,7 @@ class Game():
 
     def new_game(self):
         random_music = random.randint(1,2)
-        pygame.mixer.music.load('assets/mixer/race_song_' + str(random_music) + '.mp3')
+        pygame.mixer.music.load(asset_path( 'assets/mixer/race_song_' + str(random_music) + '.mp3'))
         pygame.mixer.music.play(-1,0)
         self.vendas_gerais = 0
         self.vendas_acelerador = 0
@@ -362,7 +369,7 @@ class Game():
 
     def end_game(self):
         global running
-        pygame.mixer.music.load('assets/mixer/end_level_sound.mp3')
+        pygame.mixer.music.load(asset_path( 'assets/mixer/end_level_sound.mp3'))
         pygame.mixer.music.set_volume(0.8)  # Increase the volume to 80%
         pygame.mixer.music.play()
         
@@ -390,13 +397,13 @@ class Game():
         """
 
         global running
-        pygame.mixer.music.load('assets/mixer/instructions_music.mp3')
+        pygame.mixer.music.load(asset_path( 'assets/mixer/instructions_music.mp3'))
         pygame.mixer.music.play(-1,0)
 
         self.char_selection_group.empty()
         playable_chars = ["M_1", "M_2", "F_1", "F_3"]
 
-        char_background = pygame.image.load('assets/char_selection/char_selection_page.png')
+        char_background = pygame.image.load(asset_path( 'assets/char_selection/char_selection_page.png'))
         char_background_rect = char_background.get_rect()
         char_background_rect.topleft = (0,0)
 
@@ -445,19 +452,19 @@ class Game():
         self.on_start_menu = False
 
         ##page 1
-        page_1_img = pygame.image.load('assets/instrucoes_background/page1.PNG')
+        page_1_img = pygame.image.load(asset_path( 'assets/instrucoes_background/page1.PNG'))
         page_1_rect = page_1_img.get_rect()
         page_1_rect.topleft = (0,0)
 
-        page_2_img = pygame.image.load('assets/instrucoes_background/page2.PNG')
+        page_2_img = pygame.image.load(asset_path( 'assets/instrucoes_background/page2.PNG'))
         page_2_rect = page_2_img.get_rect()
         page_2_rect.topleft = (0,0)
 
-        page_3_img = pygame.image.load('assets/instrucoes_background/page3.PNG')
+        page_3_img = pygame.image.load(asset_path( 'assets/instrucoes_background/page3.PNG'))
         page_3_rect = page_3_img.get_rect()
         page_3_rect.topleft = (0,0)
 
-        page_4_img = pygame.image.load('assets/instrucoes_background/page4.PNG')
+        page_4_img = pygame.image.load(asset_path( 'assets/instrucoes_background/page4.PNG'))
         page_4_rect = page_4_img.get_rect()
         page_4_rect.topleft = (0,0)
 
@@ -501,7 +508,7 @@ class Game():
                 folder_path = 'assets/Main_Chars/'+ self.sex_spelled + '/Character ' + str(self.skin_selected) + '/Clothes 1/'
                 image_path = 'Character' + str(self.skin_selected) + str(self.sex_selected) + "_1_idle_"+str(player_pos)+'.png'
 
-                original_player_image = pygame.image.load(folder_path+image_path)
+                original_player_image = pygame.image.load(asset_path( folder_path+image_path))
                 player_image = pygame.transform.scale(
                     original_player_image, 
                     (original_player_image.get_width()*player_scale, original_player_image.get_height()*player_scale)
@@ -517,7 +524,7 @@ class Game():
 
                 dog_idle_pos = int(dog_idle_float_pos)
 
-                original_dog_image = pygame.image.load('assets/Companion/Approved/Dog/instruction_sprites/idle_instruction'+str(dog_idle_pos)+'.png')
+                original_dog_image = pygame.image.load(asset_path( 'assets/Companion/Approved/Dog/instruction_sprites/idle_instruction'+str(dog_idle_pos)+'.png'))
                 dog_idle_image = pygame.transform.scale(
                     original_dog_image, 
                     (original_dog_image.get_width()*dog_scale, original_dog_image.get_height()*dog_scale)
@@ -544,7 +551,7 @@ class Game():
                 folder_path = 'assets/Main_Chars/'+ self.sex_spelled + '/Character ' + str(self.skin_selected) + '/Clothes 1/'
                 image_path = 'Character' + str(self.skin_selected) + str(self.sex_selected) + "_1_car_running_"+str(player_pos)+'.png'
 
-                original_player_image = pygame.image.load(folder_path + image_path)
+                original_player_image = pygame.image.load(asset_path( folder_path + image_path))
                 player_image = pygame.transform.scale(
                     original_player_image, 
                     (original_player_image.get_width()*player_scale, original_player_image.get_height()*player_scale)
@@ -565,7 +572,7 @@ class Game():
 
                 dog_idle_pos = int(dog_idle_float_pos)
 
-                original_dog_image = pygame.image.load('assets/Companion/Approved/Dog/instruction_sprites/dog_car_running'+str(dog_idle_pos)+'.png')
+                original_dog_image = pygame.image.load(asset_path( 'assets/Companion/Approved/Dog/instruction_sprites/dog_car_running'+str(dog_idle_pos)+'.png'))
                 dog_idle_image = pygame.transform.scale(
                     original_dog_image, 
                     (original_dog_image.get_width()*dog_scale, original_dog_image.get_height()*dog_scale)
@@ -595,7 +602,7 @@ class Game():
 
     def start_menu(self):
         global running
-        pygame.mixer.music.load('assets/mixer/start_menu_music.mp3')
+        pygame.mixer.music.load(asset_path( 'assets/mixer/start_menu_music.mp3'))
         pygame.mixer.music.play(-1,0)
         
         start_menu_button_group = pygame.sprite.Group()
@@ -611,7 +618,7 @@ class Game():
 
         start_menu_button_group.add(new_game_button)
 
-        background_menu_image = pygame.image.load('assets/menu_background.png')
+        background_menu_image = pygame.image.load(asset_path( 'assets/menu_background.png'))
         background_menu_rect = background_menu_image.get_rect()
         background_menu_rect.topleft = (0,0)
 
@@ -667,7 +674,7 @@ class Game():
             else:
                 pistax -= pista_delta_x
 
-            pista_image = pygame.image.load('assets/main_menu_racing_track.png')
+            pista_image = pygame.image.load(asset_path( 'assets/main_menu_racing_track.png'))
             pista_image_rect = pista_image.get_rect()
             pista_image_rect.bottom = WINDOW_HEIGHT
             pista_image_rect.left = pistax
@@ -683,7 +690,7 @@ class Game():
 
             dog_idle_pos = int(dog_idle_float_pos)
 
-            original_dog_image = pygame.image.load('assets/Companion/Approved/Dog/instruction_sprites/dog_car_running'+str(dog_idle_pos)+'.png')
+            original_dog_image = pygame.image.load(asset_path( 'assets/Companion/Approved/Dog/instruction_sprites/dog_car_running'+str(dog_idle_pos)+'.png'))
             dog_idle_image = pygame.transform.scale(
                 original_dog_image, 
                 (original_dog_image.get_width()*5, original_dog_image.get_height()*5)
@@ -729,7 +736,7 @@ class Game():
             folder_path = 'assets/Main_Chars/'+ sex_spelled_menu + '/Character ' + str(skin_menu) + '/Clothes 1/'
             image_path = 'Character' + str(skin_menu) + str(sex_menu) + "_1_car_running_"+str(player_pos)+'.png'
 
-            original_player_image = pygame.image.load(folder_path + image_path)
+            original_player_image = pygame.image.load(asset_path( folder_path + image_path))
             player_image = pygame.transform.scale(
                 original_player_image, 
                 (original_player_image.get_width()*8, original_player_image.get_height()*8)
@@ -811,21 +818,22 @@ class CharSelection(pygame.sprite.Sprite):
             # for example, it could be "/assets/Main_Chars/Female/Character 2/Clothes 1/Character2F_1_idle_"
 
             # Get a list of all files in the self.folder directory
-            files = os.listdir(self.folder)
+            files = os.listdir(asset_path(self.folder))
 
             # Filter the list to include only PNG files that start with initial_sprite_name
             png_files = [file for file in files if file.startswith(initial_sprite_name) and file.endswith(".png")]
 
             # Load and transform the images
             for i, png_image in enumerate(png_files):
-                loaded_image = pygame.image.load(os.path.join(self.folder, png_image))
+                full_path = os.path.join(asset_path(self.folder), png_image)
+                loaded_image = pygame.image.load(full_path)
                 key = f"{action}_{i}"
                 self.image_dict[key] = loaded_image
         #endregion
 
 
         #use the unselected frame image to compose our image rect
-        self.unselected_frame_image = pygame.image.load('assets/char_selection/not_selected_frame.png')
+        self.unselected_frame_image = pygame.image.load(asset_path( 'assets/char_selection/not_selected_frame.png'))
 
         self.image = pygame.Surface(self.unselected_frame_image.get_size(), pygame.SRCALPHA)
         self.rect = self.image.get_rect()
@@ -839,9 +847,9 @@ class CharSelection(pygame.sprite.Sprite):
         self.rect.topleft = (self.INICIO_FRAMES_LEFT + (self.position)*(self.rect.width+self.DIST_BETWEEN_FRAMES), self.INICIO_FRAMES_TOP)  # Set the position of the image rectangle to match the frame rectangle
         
         self.selected_frame_image_list = [
-            pygame.image.load('assets/char_selection/char_selected_01.png'),
-            pygame.image.load('assets/char_selection/char_selected_02.png'),
-            pygame.image.load('assets/char_selection/char_selected_03.png'),
+            pygame.image.load(asset_path( 'assets/char_selection/char_selected_01.png')),
+            pygame.image.load(asset_path( 'assets/char_selection/char_selected_02.png')),
+            pygame.image.load(asset_path( 'assets/char_selection/char_selected_03.png')),
         ]
 
         self.char_sprite = self.image_dict['idle_0']
@@ -881,7 +889,7 @@ class CharSelection(pygame.sprite.Sprite):
 
         #choose the current sprite for the frame
         if self.action == 'idle':
-            self.frame_sprite = pygame.image.load('assets/char_selection/not_selected_frame.png')
+            self.frame_sprite = pygame.image.load(asset_path( 'assets/char_selection/not_selected_frame.png'))
 
         else:
             self.frame_sprite = self.selected_frame_image_list[int(self.frame_sprite_float_pos)]
@@ -915,15 +923,15 @@ class Card(pygame.sprite.Sprite):
         # Imagem depende se o item é acelerador ou não
 
         if self.acelerador == True:
-            self.image = pygame.image.load('assets/card_acel_small_frame_2.png')
+            self.image = pygame.image.load(asset_path( 'assets/card_acel_small_frame_2.png'))
             # self.image = pygame.transform.scale(self.image, (245*scale_card, 300*scale_card))
             self.color = (239, 168, 80)
-            self.click_sound = pygame.mixer.Sound('assets/mixer/card_choice.wav')
+            self.click_sound = pygame.mixer.Sound(asset_path( 'assets/mixer/card_choice.wav'))
         else:
-            self.image = pygame.image.load('assets/card_geral_small_frame_2.png')
+            self.image = pygame.image.load(asset_path( 'assets/card_geral_small_frame_2.png'))
             # self.image = pygame.transform.scale(self.image, (245*scale_card, 300*scale_card))
             self.color = (21, 122, 171)
-            self.click_sound = pygame.mixer.Sound('assets/mixer/card_choice.wav')
+            self.click_sound = pygame.mixer.Sound(asset_path( 'assets/mixer/card_choice.wav'))
 
         self.rect = self.image.get_rect()
 
@@ -1001,7 +1009,7 @@ class Travel_Button(pygame.sprite.Sprite):
         self.button_size = button_size
         self.positions_list = positions_list
         self.position = positions_list[self.i]
-        self.image = pygame.image.load(self.folder + sprite_name +"_" + str(self.position) + ".png")
+        self.image = pygame.image.load(asset_path( self.folder + sprite_name +"_" + str(self.position) + ".png"))
         self.image = pygame.transform.scale(self.image, button_size)
         self.game = game
         self.action = action_name
@@ -1013,7 +1021,7 @@ class Travel_Button(pygame.sprite.Sprite):
 
     def animate(self):
         for pos in (self.positions_list+self.positions_list[-2::-1]):
-            self.image = pygame.image.load(self.folder + self.sprite_name +"_" + str(pos) + ".png")
+            self.image = pygame.image.load(asset_path( self.folder + self.sprite_name +"_" + str(pos) + ".png"))
             self.image = pygame.transform.scale(self.image, self.button_size)
             pygame.draw.rect(display_surface, self.background_color, self.rect)
             display_surface.blit(self.image, self.rect)
@@ -1025,7 +1033,7 @@ class Travel_Button(pygame.sprite.Sprite):
 
     def click_script(self):
         self.animate()
-        pygame.mixer.Sound('assets/mixer/button_click.wav').play()
+        pygame.mixer.Sound(asset_path('assets/mixer/button_click.wav')).play()
         time.sleep(2)  # Insert a 2-second delay
         self.run_action()
 
@@ -1059,12 +1067,12 @@ class Old_Budget(pygame.sprite.Sprite):
         self.rect.topleft = (bonus_board_rect.left + 60, bonus_board_rect.top + 80 + self.posicao * (self.rect.height))
 
         #exp bar frame goes on the bottom left of the rect
-        self.exp_bar_frame = pygame.image.load('assets/exp_bar.png')
+        self.exp_bar_frame = pygame.image.load(asset_path( 'assets/exp_bar.png'))
         self.exp_bar_frame_rect = self.exp_bar_frame.get_rect()
         self.exp_bar_frame_rect.bottomleft = (0, self.rect.height)
 
         #peso bar frame goes right beside the exp bar
-        self.peso_bar_frame = pygame.image.load('assets/peso_bar.png')
+        self.peso_bar_frame = pygame.image.load(asset_path( 'assets/peso_bar.png'))
         self.peso_bar_frame_rect = self.peso_bar_frame.get_rect()
         self.peso_bar_frame_rect.bottomleft = (self.exp_bar_frame_rect.right + 7, self.exp_bar_frame_rect.bottom)
 
@@ -1123,7 +1131,7 @@ class Old_Budget(pygame.sprite.Sprite):
 
         WRITING_OLD_BONUS_COLOR = (62, 40, 50)
         # Update the text font
-        self.font = pygame.font.Font('assets/joystix.otf', 18)
+        self.font = pygame.font.Font(asset_path('assets/joystix.otf'), 18)
         self.linha_text = self.font.render(str(self.linha), True, WRITING_OLD_BONUS_COLOR)
         self.linha_rect = self.linha_text.get_rect()
         self.linha_rect.bottomleft = (self.exp_bar_frame_rect.left, self.exp_bar_frame_rect.top+3)
@@ -1201,11 +1209,11 @@ class New_Budget(pygame.sprite.Sprite):
         self.rect.topleft = (bonus_novo_board_rect.left + 39, bonus_novo_board_rect.top + 75 + self.posicao * (self.rect.height))
 
         #exp bar frame goes on the bottom left of the rect
-        self.exp_bar_frame = pygame.image.load('assets/exp_bar_new_model.png')
+        self.exp_bar_frame = pygame.image.load(asset_path('assets/exp_bar_new_model.png'))
         self.exp_bar_frame_rect = self.exp_bar_frame.get_rect()
         self.exp_bar_frame_rect.bottomleft = (0, self.rect.height)
 
-        self.peso_bar_frame = pygame.image.load('assets/peso_new_model.png')
+        self.peso_bar_frame = pygame.image.load(asset_path('assets/peso_new_model.png'))
         self.peso_bar_frame_rect = self.peso_bar_frame.get_rect()
         self.peso_bar_frame_rect.bottomleft = (self.exp_bar_frame_rect.right + 8, self.exp_bar_frame_rect.bottom)
 
@@ -1268,8 +1276,8 @@ class New_Budget(pygame.sprite.Sprite):
 
         WRITING_NEW_BONUS_COLOR = (58, 68, 102)
         # Update the text font
-        self.font = pygame.font.Font('assets/joystix.otf', 18)
-        self.title_font = pygame.font.Font('assets/joystix.otf', 30)
+        self.font = pygame.font.Font(asset_path('assets/joystix.otf'), 18)
+        self.title_font = pygame.font.Font(asset_path('assets/joystix.otf'), 30)
         #Nesse caso, a "linha" vai se chamar ACELERADOR ou GERAL
         self.linha_text = self.title_font.render(str(self.linha), True, WRITING_NEW_BONUS_COLOR)
         self.linha_rect = self.linha_text.get_rect()
@@ -1370,7 +1378,7 @@ class Player(pygame.sprite.Sprite):
             ...
         }
         """
-        self.folder = 'assets/Main_chars/'+self.sex+"/Character "+str(skin)+"/Clothes "+str(self.clothes)+"/"
+        self.folder = asset_path('assets/Main_chars/'+self.sex+"/Character "+str(skin)+"/Clothes "+str(self.clothes)+"/")
         self.char_key_name = "Character" + str(self.skin) + self.sex_sigla + "_" + str(self.clothes) + "_"
         self.upscale = 5
         self.action_sprites = [
@@ -1379,7 +1387,7 @@ class Player(pygame.sprite.Sprite):
             "silver_medal_get", "gold_medal_get", "diamond_medal_get",
             "silver_medal_hold", "gold_medal_hold", "diamond_medal_hold"
             ]
-        self.gui_icon = pygame.image.load('assets/Main_chars/'+self.sex+"/Character "+str(skin)+"/Clothes "+str(self.clothes)+"/"+"Icon.png")
+        self.gui_icon = pygame.image.load(asset_path('assets/Main_chars/'+self.sex+"/Character "+str(skin)+"/Clothes "+str(self.clothes)+"/"+"Icon.png"))
         self.image_dict = {}
         for action in self.action_sprites:
             initial_sprite_name = self.char_key_name + action + "_"
@@ -1488,7 +1496,7 @@ class Player(pygame.sprite.Sprite):
                     self.medal_dict[medal][2] = True #So that we do not enter in the same board twice
 
                     #Load the board image
-                    board_image = pygame.image.load('assets/placa_atingimento_'+ medal + ".png")
+                    board_image = pygame.image.load(asset_path('assets/placa_atingimento_'+ medal + ".png"))
                     board_rect = board_image.get_rect()
                     board_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
 
@@ -1501,7 +1509,7 @@ class Player(pygame.sprite.Sprite):
                     #start sprite frame position and speed of change
                     board_sprite_float_position = 0
                     board_sprite_float_delta = 0.1
-                    self.medal_sound = pygame.mixer.Sound('assets/mixer/medal_get.wav')
+                    self.medal_sound = pygame.mixer.Sound(asset_path('assets/mixer/medal_get.wav'))
                     self.medal_sound.play()
                     in_medal_board = True
                     while in_medal_board:
@@ -1587,7 +1595,7 @@ class Player_2(pygame.sprite.Sprite):
         self.folder = 'assets/Companion/Approved/' + self.type + "/"
         self.image_dict = {}
 
-        self.gui_icon = pygame.image.load(self.folder+"Icon.png")
+        self.gui_icon = pygame.image.load(asset_path( self.folder+"Icon.png"))
 
         self.action_sprites_frames = {"car_idle":24,"car_running":4}
         self.upscale = 4
@@ -1611,7 +1619,7 @@ class Player_2(pygame.sprite.Sprite):
     
         """
         #load the horizontal image sheet
-        self.sprite_sheet = pygame.image.load(self.folder + action +".png").convert_alpha()
+        self.sprite_sheet = pygame.image.load(asset_path( self.folder + action +".png")).convert_alpha()
 
         #Define the sizes of each sprite
         self.sprite_width = self.sprite_sheet.get_width()/n_frames
@@ -1713,27 +1721,27 @@ my_game = Game(my_card_group, my_Main_Player, my_Second_Player, my_old_budget_gr
 
 #region Define images
 
-background_image = pygame.image.load('assets/racing_background.png')
+background_image = pygame.image.load(asset_path( 'assets/racing_background.png'))
 background_image = pygame.transform.scale(background_image, (1920,1080))
 background_rect = background_image.get_rect()
 background_rect.topleft = (0,0)
 
-scroll_image = pygame.image.load('assets/game_board.png')
+scroll_image = pygame.image.load(asset_path( 'assets/game_board.png'))
 scroll_rect = scroll_image.get_rect()
 scroll_rect.topleft = (25,25)
 
 #Bonus board old model
-bonus_board_image = pygame.image.load('assets/modelo_antigo.png')
+bonus_board_image = pygame.image.load(asset_path( 'assets/modelo_antigo.png'))
 bonus_board_rect = bonus_board_image.get_rect()
 bonus_board_rect.top = scroll_rect.top
 bonus_board_rect.left = scroll_rect.right + 10
 
 #Bonus board mnew model
-bonus_novo_board_image = pygame.image.load('assets/modelos_bonus_novo.png')
+bonus_novo_board_image = pygame.image.load(asset_path( 'assets/modelos_bonus_novo.png'))
 bonus_novo_board_rect = bonus_novo_board_image.get_rect()
 bonus_novo_board_rect.topleft = (bonus_board_rect.right + 10, bonus_board_rect.top)
 
-final_bonus_image = pygame.image.load('assets/bonus_board.png')
+final_bonus_image = pygame.image.load(asset_path( 'assets/bonus_board.png'))
 final_bonus_rect = final_bonus_image.get_rect()
 final_bonus_rect.top = bonus_novo_board_rect.bottom-41
 final_bonus_rect.left = bonus_board_rect.right-51
