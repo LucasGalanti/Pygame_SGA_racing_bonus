@@ -29,3 +29,38 @@ Please note that the version of this project shared on GitHub has been modified 
 ## Conclusion
 
 This project was a successful endeavor in improving the understanding of our new bonus methodology among the sales team. We hope that it can serve as a useful reference for similar initiatives in other organizations.
+
+## Installing the required dependencies
+To run this project, you need to install the required dependencies. Follow the steps below to set up your virtual environment and install the dependencies:
+
+1. Clone the project repository to your local machine.
+
+2. Navigate to the project directory:
+    ```bash
+    cd /path/to/project/directory
+    ```
+
+3. Create a virtual environment:
+    ```bash
+    python -m venv env
+    ```
+
+4. Activate the virtual environment:
+    - For Windows:
+        ```bash
+        .\env\Scripts\activate
+        ```
+    - For macOS/Linux:
+        ```bash
+        source env/bin/activate
+        ```
+
+5. Install the dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+6. Run the project:
+    ```bash
+    python Card_Game.py
+    ```
